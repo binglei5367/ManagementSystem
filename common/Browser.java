@@ -11,13 +11,10 @@ public class Browser extends User{
 
 	Browser(String name, String password, String role) {
 		super(name, password, role);
-		// TODO Auto-generated constructor stub
 	}
 			
 	Scanner scanner = new Scanner(System.in);
-	@Override
 	public void showMenu() {
-		// TODO Auto-generated method stub
 		while(true){
 			System.out.print(
 					  "--browser--\n"
@@ -47,31 +44,33 @@ public class Browser extends User{
 				try {
 					this.changeUserInfo(new_password);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					System.out.println(e.getMessage());
 				}
 				break;
 			case 2:
 				//文件列表
 				try {
-					this.showFileList();
+					if (this.showFileList()){
+						System.out.println("");
+					}
+					else{
+						System.out.println("");
+					}
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					System.out.println(e.getMessage());
 				}
 				break;
 			case 3:
 				//下载文件
-				System.out.print("输入文件名: ");
-				String filename = scanner.next();
 				try {
-					if (this.downloadFile(filename)){
+					if (this.downloadFile()){
 						System.out.println("下载成功");
 					}
+					else{
+						System.out.println("下载失败");
+					}
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					System.out.println("下载失败");
-					scanner.nextLine();
+					System.out.println(e.getMessage());
 				}
 				break;
 			case 4:

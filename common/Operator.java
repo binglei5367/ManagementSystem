@@ -1,14 +1,12 @@
-<<<<<<< HEAD
 package common;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-=======
->>>>>>> parent of 3166661... SQL Simulating
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.*;
 
 import javax.swing.JFrame;
@@ -20,13 +18,10 @@ public class Operator extends User
 
 	Operator(String name, String password, String role) {
 		super(name, password, role);
-		// TODO Auto-generated constructor stub
 	}
 	
 	Scanner scanner = new Scanner(System.in);
-	@Override
 	public void showMenu() {
-		// TODO Auto-generated method stub
 		while(true){
 			System.out.print(
 					  "--operator--\n"
@@ -56,47 +51,53 @@ public class Operator extends User
 				System.out.print("输入新密码: ");
 				String new_password = scanner.next();
 				try {
-					this.changeUserInfo(new_password);
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-				System.out.println(e.getMessage());	
+					if(this.changeUserInfo(new_password)){
+						System.out.print("");
+					}
+					else{
+						System.out.println("");
+					}
+				} 
+				catch (SQLException e) {
+					System.out.println(e.getMessage());	
 				}
 				break;
 			case 2:
 				//文件列表
 				try {
-					this.showFileList();
+					if(this.showFileList()){
+						System.out.println("获取文件列表成功");
+					}
+					else{
+						System.out.println("获取文件列表失败");
+					}
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					// e.printStackTrace();
 					System.out.println(e.getMessage());
 				}
 				break;
 			case 3:
 				//下载文件
-				System.out.print("输入文件名: ");
-				String filename = scanner.next();
 				try {
-					if (this.downloadFile(filename)){
-						System.out.println("...下载成功");
+					if (this.downloadFile()){
+						System.out.println("下载成功");
+					}
+					else{
+						System.out.println("下载失败");
 					}
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					System.out.println(e.getMessage());
-//					e.printStackTrace();
 				}
 				break;
 			case 4:
 				//上传文件
-				System.out.println("输入文件名: ");
-				String filename2 = scanner.next();
 				try {
-					if(this.uploadFile(filename2)){
+					if(this.uploadFile()){
 						System.out.println("上传成功");
 					}
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					// e.printStackTrace();
+					else{
+						System.out.println("");
+					}
+				} catch (SQLException | IOException e) {
 					System.out.println(e.getMessage());
 				}
 				break;
@@ -110,12 +111,45 @@ public class Operator extends User
 		}
 	}
 	
-	public boolean uploadFile(String filename) throws SQLException{
-		System.out.println("上传文件... ...");
-		if(Math.random()<0.3){
-			throw new SQLException("Not Connected to Database");
-		}	
+	public boolean uploadFile() throws SQLException, IOException{
+//		System.out.println("上传文件... ...");
+//		if(Math.random()<0.3){
+//			throw new SQLException("Not Connected to Database");
+//		}	
+//		return true;
+		
+		System.out.println("输入文件ID");
+		String ID = scanner.next();
+		System.out.println("输入文件路径");
+		String file = scanner.next();
+		
+		byte[] buffer = new byte[1024];
+		File fileRead = new File(file);
+		String fileName = fileRead.getName();
+		File fileWrite = new File(uploadPath + fileName);
+		
+
+		FileInputStream infile = new FileInputStream(fileRead);
+		BufferedInputStream in = new BufferedInputStream(infile);
+		FileOutputStream outfile = new FileOutputStream(fileWrite);
+		BufferedOutputStream out = new BufferedOutputStream(outfile);
+		
+		while(true){
+			int byteRead = in.read(buffer);
+			if(byteRead == -1)break;
+			out.write(buffer, 0, byteRead);
+		}
+		in.close();
+		out.close();
+		
+
+		
+		String creator = this.getName();
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		String description = "Null";
+		DataProcessing.insertDoc(ID, creator, timestamp, description, fileName);
 		return true;
+
 	}
 
 	@Override
