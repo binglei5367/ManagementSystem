@@ -1,13 +1,8 @@
-package common;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Enumeration;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
-import javax.swing.JFrame;
-
-import GUI.AdministratorFrame;
 
 public class Administrator extends User{
 
@@ -210,12 +205,5 @@ public class Administrator extends User{
 			return true;
 		}
 		return false;
-	}
-
-	@Override
-	public void showFrame(JFrame parentFrame) {
-		// TODO Auto-generated method stub
-		new AdministratorFrame("Admin", parentFrame, this);
-		
 	}
 }
