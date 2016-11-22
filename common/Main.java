@@ -33,7 +33,7 @@ public class Main {
 					User user = null;
 					while(true){
 						try{
-							user = DataProcessing.searchUser(name, password);
+							user = DataProcessing.search(name, password);
 							break;
 						}
 						catch(SQLException e){
