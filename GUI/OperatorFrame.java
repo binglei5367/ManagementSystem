@@ -27,8 +27,7 @@ public class OperatorFrame extends JFrame{
 		this.parentFrame = parentFrame;
 		this.user = user;
 		
-		btnUploadFile = new JButton("上  传  文  件");
-		
+		btnUploadFile = new JButton("上  传  文  件");		
 		btnDownloadFile = new JButton("下  载  文  件");
 		btnShowFileList = new JButton("文  件  列  表");
 		btnModiPsd = new JButton("修  改  密  码");

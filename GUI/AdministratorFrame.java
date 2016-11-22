@@ -18,6 +18,7 @@ public class AdministratorFrame extends JFrame{
 	private JButton btnChangeUser;
 	private JButton btnAddUser;
 	private JButton btnDeletUser;
+	private JButton btnUserList;
 	private JButton btnUploadFile;
 	private JButton btnDownloadFile;
 	private JButton btnShowFileList;
@@ -26,7 +27,7 @@ public class AdministratorFrame extends JFrame{
 	
 	private JPanel panel;
 	
-	public AdministratorFrame(String frameTitle, JFrame parentframe, User user){
+	public AdministratorFrame(String frameTitle, JFrame parentFrame, User user){
 		super(frameTitle);
 		this.parentFrame = parentFrame;
 		this.user = user;
@@ -34,9 +35,8 @@ public class AdministratorFrame extends JFrame{
 		btnChangeUser = new JButton("修  改  权  限");
 		btnAddUser = new JButton("添  加  用  户");
 		btnDeletUser = new JButton("删  除  用  户");
-		
+		btnUserList = new JButton("用  户  列  表");
 		btnUploadFile = new JButton("上  传  文  件");
-		
 		btnDownloadFile = new JButton("下  载  文  件");
 		btnShowFileList = new JButton("文  件  列  表");
 		btnModiPsd = new JButton("修  改  密  码");
@@ -44,8 +44,13 @@ public class AdministratorFrame extends JFrame{
 
 		panel = new JPanel();
 		panel.setLayout(new GridLayout(9, 1));
-		panel.add(btnDownloadFile);
+		panel.add(btnUserList);
+		panel.add(btnAddUser);
+		panel.add(btnDeletUser);
+		panel.add(btnChangeUser);
 		panel.add(btnShowFileList);
+		panel.add(btnUploadFile);
+		panel.add(btnDownloadFile);	
 		panel.add(btnModiPsd);
 		panel.add(btnExit);
 
@@ -60,8 +65,9 @@ public class AdministratorFrame extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				AdministratorFrame.this.dispose();
-				parentFrame.setVisible(true);
+				// TODO Auto-generated method stub
+				AdministratorFrame.this.dispose(); // 释放窗口资源，关闭窗口
+				parentFrame.setVisible(true); // 设置父窗口可见
 			}
 		});
 		
@@ -72,7 +78,7 @@ public class AdministratorFrame extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				new ChangeUserFrame("", AdministratorFrame.this, user);
+				new ChangeUserFrame("修改权限", AdministratorFrame.this, user);
 			}
 			
 		});
@@ -83,7 +89,7 @@ public class AdministratorFrame extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				new AddUserFrame("", AdministratorFrame.this, user);
+				new AddUserFrame("添加用户", AdministratorFrame.this, user);
 			}
 			
 		});
@@ -94,11 +100,21 @@ public class AdministratorFrame extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				new DeletUserFrame("", AdministratorFrame.this, user);
+				new DeletUserFrame("删除用户", AdministratorFrame.this, user);
 			}
 			
 		});
 		
+//		//
+//		btnUserList.addActionListener(new ActionListener() {
+//
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				// TODO Auto-generated method stub
+//				new UserListFrame("用户列表", AdministratorFrame.this, user);
+//			}
+//			
+//		});
 		
 		// 处理“上传文件”按钮事件
 //		btnUploadFile.addActionListener(new ActionListener() {
@@ -106,7 +122,7 @@ public class AdministratorFrame extends JFrame{
 //			@Override
 //			public void actionPerformed(ActionEvent e) {
 //				// TODO Auto-generated method stub
-//				new UploadFileFrame("", AdministratorFrame.this, user);
+//				new UploadFileFrame("上传文件", AdministratorFrame.this, user);
 //			}
 //			
 //		});
@@ -141,10 +157,7 @@ public class AdministratorFrame extends JFrame{
 			}
 		});
 		
-		
-		
-		
-		
+
 		
 		
 		

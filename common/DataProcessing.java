@@ -99,6 +99,7 @@ public  class DataProcessing {
 //			throw new SQLException( "Error in excecuting Update" );
 		
 		if (users.containsKey(name)) {
+//			if (users.get(name).getPassword() != password) return false;
 			if (role.equalsIgnoreCase("administrator"))
 				user = new Administrator(name,password, role);
 			else if (role.equalsIgnoreCase("operator"))

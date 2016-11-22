@@ -1,5 +1,6 @@
 package GUI;
 
+import common.DataProcessing;
 import common.User;
 
 import java.awt.BorderLayout;
@@ -89,10 +90,15 @@ public class ModiPsdFrame extends JFrame{
 				try {
 					String oddPsd = String.valueOf(txtOddPsd.getPassword());
 					String newPsd = String.valueOf(txtNewPsd.getText());
-					if (oddPsd == user.getPassword()) {
-						user.changeUserInfo(newPsd);
+					User userExist = DataProcessing.searchUser(user.getName(), oddPsd);
+					if (userExist != null) {
+						if (userExist.changeUserInfo(newPsd)) {
+							JOptionPane.showMessageDialog(ModiPsdFrame.this, "ÐÞ¸Ä³É¹¦");
+						} else {
+							JOptionPane.showMessageDialog(ModiPsdFrame.this, "ÐÞ¸ÄÊ§°Ü");
+						}
 					} else {
-						JOptionPane.showMessageDialog(ModiPsdFrame.this, "¿ÚÁî´íÎó", "´íÎó", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(ModiPsdFrame.this, "ÃÜÂë´íÎó", "´íÎó", JOptionPane.ERROR_MESSAGE);
 					}
 				} catch (SQLException ex) {
 					JOptionPane.showMessageDialog(ModiPsdFrame.this, "Êý¾Ý¿â´íÎó" + ex.getMessage(), "´íÎó",

@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -35,7 +36,7 @@ public class LoginFrame extends JFrame {
 		super(frameTitle);
 
 		lblUserName = new JLabel("用       户:  ");
-		lblPassword = new JLabel("口       令:  ");
+		lblPassword = new JLabel("密       码:  ");
 
 		txtUserName = new JTextField(10);
 		txtPassword = new JPasswordField(10);
@@ -47,7 +48,7 @@ public class LoginFrame extends JFrame {
 		pnlLogin.setLayout(new BorderLayout());// 设置“登录面板”的布局
 
 		pnlInput = new JPanel(); // 放置“用户名”和“密码"文本框的面板
-
+		pnlInput.setLayout(new GridLayout(4, 1));
 		pnlInput.add(lblUserName);
 		pnlInput.add(txtUserName);
 		pnlInput.add(lblPassword);
@@ -92,7 +93,7 @@ public class LoginFrame extends JFrame {
 						user.showFrame(LoginFrame.this);
 						LoginFrame.this.setVisible(false); // 设置窗口不可见
 					} else {
-						JOptionPane.showMessageDialog(LoginFrame.this, "用户名或口令错误", "错误", JOptionPane.ERROR_MESSAGE);// 弹出出错信息提示框
+						JOptionPane.showMessageDialog(LoginFrame.this, "用户名或密码错误", "错误", JOptionPane.ERROR_MESSAGE);// 弹出出错信息提示框
 					}
 				} catch (SQLException ex) {
 					JOptionPane.showMessageDialog(LoginFrame.this, "数据库错误" + ex.getMessage(), "错误",
