@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.BorderLayout;
+import java.awt.Choice;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,7 +23,8 @@ public class ChangeUserFrame extends JFrame{
 	
 	private JTextField txtUserName;
 	private JPasswordField txtPsd;
-	private JTextField txtRole;				// 等下改成Choice
+//	private JTextField txtRole;				// 等下改成Choice
+	private Choice choiceRole;				// 改了
 	
 	private JButton btnSure;
 	private JButton btnReset;
@@ -46,7 +48,12 @@ public class ChangeUserFrame extends JFrame{
 		
 		txtUserName = new JTextField(10);
 		txtPsd = new JPasswordField(10);
-		txtRole = new JTextField(10);
+//		txtRole = new JTextField(10);
+		choiceRole = new Choice();
+		
+		choiceRole.add("Browser");
+		choiceRole.add("Operator");
+		choiceRole.add("Administrator");
 		
 		btnSure = new JButton("确定");
 		btnReset = new JButton("重置");
@@ -62,7 +69,8 @@ public class ChangeUserFrame extends JFrame{
 		pnlInput.add(lblPsd);
 		pnlInput.add(txtPsd);
 		pnlInput.add(lblRole);
-		pnlInput.add(txtRole);
+//		pnlInput.add(txtRole);
+		pnlInput.add(choiceRole);
 		
 		pnlChangeUser.add(pnlInput, BorderLayout.CENTER);
 		
@@ -88,7 +96,7 @@ public class ChangeUserFrame extends JFrame{
 				// TODO Auto-generated method stub
 				txtUserName.setText("");
 				txtPsd.setText("");
-				txtRole.setText("");
+//				txtRole.setText("");
 			}
 		});		
 		
@@ -112,7 +120,8 @@ public class ChangeUserFrame extends JFrame{
 				try{
 					String userName = txtUserName.getText().trim();
 					String password = String.valueOf(txtPsd.getPassword()).trim();
-					String role = txtRole.getText();
+//					String role = txtRole.getText();
+					String role = choiceRole.getSelectedItem();
 					if (DataProcessing.updateUser(userName, password, role)) {
 						JOptionPane.showMessageDialog(ChangeUserFrame.this, "修改成功");
 					} else {
