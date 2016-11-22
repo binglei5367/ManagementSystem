@@ -1,3 +1,4 @@
+package common;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -7,6 +8,10 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.*;
+
+import javax.swing.JFrame;
+
+import GUI.OperatorFrame;
 
 public class Operator extends User
 {
@@ -145,5 +150,11 @@ public class Operator extends User
 		DataProcessing.insertDoc(ID, creator, timestamp, description, fileName);
 		return true;
 
+	}
+
+	@Override
+	public void showFrame(JFrame parentFrame) {
+		// TODO Auto-generated method stub
+		new OperatorFrame("Operator", parentFrame, this);
 	}
 }

@@ -1,6 +1,11 @@
+package common;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.*;
+
+import javax.swing.JFrame;
+
+import GUI.BrowserFrame;
 
 public class Browser extends User{
 
@@ -76,5 +81,10 @@ public class Browser extends User{
 					
 			}	
 		}
+	}
+	@Override
+	public void showFrame(JFrame parentFrame) {
+		// TODO Auto-generated method stub
+		new BrowserFrame("Browser", parentFrame, this);
 	}
 }

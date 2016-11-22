@@ -1,3 +1,4 @@
+package common;
 import java.sql.SQLException;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -6,6 +7,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.*;
+
+import javax.swing.JFrame;
 
 
 public abstract class User {
@@ -17,7 +20,7 @@ public abstract class User {
 	String downloadPath;
 	Scanner scanner = new Scanner(System.in);
 	
-	User(String name,String password,String role){
+	protected User(String name,String password,String role){
 		this.name=name;
 		this.password=password;
 		this.role=role;		
@@ -26,6 +29,8 @@ public abstract class User {
 		downloadPath = "C:\\Workspace\\Download\\";			//下载文件路径
 		
 	}
+	
+	public abstract void showFrame(JFrame parentFrame);
 	
 	public boolean changeUserInfo(String password) throws SQLException{
 		//写用户信息到存储
