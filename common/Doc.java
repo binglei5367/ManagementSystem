@@ -1,3 +1,4 @@
+package common;
 import java.sql.Timestamp;
 
 class Doc{
