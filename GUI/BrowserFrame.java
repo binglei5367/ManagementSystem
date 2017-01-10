@@ -44,7 +44,7 @@ public class BrowserFrame extends JFrame {
 
 		getContentPane().add(panel, BorderLayout.CENTER);// 将panel放置在窗口的内容面板的中间
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);// 设置当点击窗口右上角的“关闭”图标后，退出应用程序
-		setSize(600, 400);// 设置窗口的大小
+		setSize(400, 400);// 设置窗口的大小
 		this.setResizable(false);// 设置不可调整窗口的大小
 		this.setLocationRelativeTo(null);// 设置窗口的显示位置为屏幕的中间
 		this.setVisible(true);// 设置窗口可见

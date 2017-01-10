@@ -1,15 +1,19 @@
 package GUI;
 
-
 import java.awt.BorderLayout;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import common.Doc;
+
 import javax.swing.JTable;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Scrollbar;
 import javax.swing.JScrollPane;
@@ -40,8 +44,8 @@ public class ShowFileListFrame extends JFrame {
 	 */
 	public ShowFileListFrame() {
 		
-		docList = new ArrayList<Doc>;
-		int rowNum = docList.size();
+		ArrayList<Doc> DocList = new ArrayList<Doc>();
+		int rowNum = DocList.size();
 		String[] tableHeadString = {"文件编号", "文件名", "描述", "上传者", "上传时间"};
 		String[][] tableData = new String[rowNum][5];
 		

@@ -56,7 +56,7 @@ public class AdministratorFrame extends JFrame{
 
 		getContentPane().add(panel, BorderLayout.CENTER);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(900, 400);
+		setSize(400, 400);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
